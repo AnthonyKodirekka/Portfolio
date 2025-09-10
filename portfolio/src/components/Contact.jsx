@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Mail, Phone, MapPin, Linkedin, Github, Download, Send, CheckCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import { EMAILJS_CONFIG } from '../config/emailjs';
 
 const Contact = () => {
   const [ref, inView] = useInView({
@@ -60,17 +62,49 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 3000);
+    try {
+      // Check if EmailJS is properly configured
+      const isEmailJSConfigured = 
+        EMAILJS_CONFIG.SERVICE_ID !== 'service_your_service_id' &&
+        EMAILJS_CONFIG.TEMPLATE_ID !== 'template_your_template_id' &&
+        EMAILJS_CONFIG.PUBLIC_KEY !== 'your_public_key';
+      
+      if (isEmailJSConfigured) {
+        // Send email using EmailJS
+        const templateParams = {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject || 'Portfolio Contact Form',
+          message: formData.message,
+          to_name: 'Anthony Kodirekka'
+        };
+        
+        await emailjs.send(
+          EMAILJS_CONFIG.SERVICE_ID,
+          EMAILJS_CONFIG.TEMPLATE_ID,
+          templateParams,
+          EMAILJS_CONFIG.PUBLIC_KEY
+        );
+      } else {
+        // Fallback: Simulate email sending and show contact info
+        console.log('EmailJS not configured. Form data:', formData);
+        await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API call
+      }
+      
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      }, 3000);
+      
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setIsSubmitting(false);
+      alert('Sorry, there was an error sending your message. Please try again or contact me directly at kodirekkaanthony4@gmail.com');
+    }
   };
 
   return (
@@ -180,6 +214,12 @@ const Contact = () => {
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
               Send a Message
             </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-400 mb-6">
+              💡 <strong>Note:</strong> For immediate contact, you can also email me directly at{' '}
+              <a href="mailto:kodirekkaanthony4@gmail.com" className="text-primary-600 dark:text-primary-400 hover:underline">
+                kodirekkaanthony4@gmail.com
+              </a>
+            </p>
 
             {isSubmitted ? (
               <motion.div

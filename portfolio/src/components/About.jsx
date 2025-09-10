@@ -67,8 +67,8 @@ const About = () => {
           >
             <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
               I am a dedicated software engineer with over 5 years of professional experience in developing 
-              enterprise-grade applications and solutions. Currently pursuing my Master's degree in Software 
-              Engineering at Northeastern University, I combine advanced academic knowledge with extensive 
+              enterprise-grade applications and solutions. With a Master's degree in Software 
+              Engineering from Northeastern University, I combine advanced academic knowledge with extensive 
               industry experience.
             </p>
             
