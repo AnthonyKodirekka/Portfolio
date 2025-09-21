@@ -11,6 +11,27 @@ const Projects = () => {
 
   const projects = [
     {
+      title: 'EnrollAI',
+      subtitle: 'Course Registration Chatbot',
+      description: 'Built a generative AI chatbot using Large Language Models (LLMs) to help students with course registration, prerequisite checks, and schedule planning. Integrated Spring Boot APIs with MySQL database and deployed on AWS using Docker and Kubernetes for scalable, cloud-native operations.',
+      image: '/api/placeholder/600/400',
+      technologies: ['Java', 'MySQL', 'React.js', 'LangChain', 'GPT', 'Docker', 'Kubernetes', 'AWS'],
+      features: [
+        'Generative AI chatbot using LLMs and GPT',
+        'Intelligent course registration assistance',
+        'Automated prerequisite checking system',
+        'Smart schedule planning recommendations',
+        'LangChain integration for AI workflows',
+        'Docker containerization and Kubernetes deployment',
+        'AWS cloud infrastructure and services'
+      ],
+      icon: Code,
+      color: 'from-purple-500 to-purple-600',
+      github: '#',
+      demo: '#',
+      date: '2024'
+    },
+    {
       title: 'WareWhere',
       subtitle: 'Enterprise Warehouse Management Platform',
       description: 'Built a comprehensive warehouse leasing marketplace utilizing Spring Boot microservices architecture, React.js frontend, and Apache Kafka for real-time data streaming. Deployed on AWS infrastructure using Docker containerization and Kubernetes orchestration for scalable, cloud-native operations.',
@@ -27,7 +48,7 @@ const Projects = () => {
       color: 'from-blue-500 to-blue-600',
       github: '#',
       demo: '#',
-      date: '2023'
+      date: '2024'
     },
     {
       title: 'FitTrack',
@@ -46,7 +67,7 @@ const Projects = () => {
       color: 'from-green-500 to-green-600',
       github: '#',
       demo: '#',
-      date: '2022'
+      date: '2024'
     },
     {
       title: 'LeftOverHub',
@@ -65,7 +86,7 @@ const Projects = () => {
       color: 'from-purple-500 to-purple-600',
       github: '#',
       demo: '#',
-      date: '2021'
+      date: '2023'
     }
   ];
 
