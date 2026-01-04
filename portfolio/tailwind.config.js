@@ -1,3 +1,4 @@
+//Author : Anthony Kodirekka 
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
